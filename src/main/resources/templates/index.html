@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Laundry main page</title>
+</head>
+<body>
+<a th:href="@{laundry}">Add laundry</a>&nbsp
+<a th:href="@{client}">Add new Hotel</a>
+<h1>List of laundries form Hotels</h1>
+<table >
+    <thead>
+    <tr>
+        <td>Laundry Id</td>
+        <td>Hotel</td>
+        <td>Bed clothes No</td>
+        <td>Towels no</td>
+        <td>When delivered</td>
+        <td>When started washing</td>
+        <td>When started Drying</td>
+        <td>When finished</td>
+        <td></td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each=" cloth : ${laundries}">
+        <td th:text="${cloth.getId()}"></td>
+        <td th:text="${cloth.getCustomer().getName()}"></td>
+        <td th:text="${cloth.getTowelsAmount()}"></td>
+        <td th:text="${cloth.getBedclothesAmount()}"></td>
+        <td th:text="${cloth.getDelivered()}"></td>
+        <td th:text="${cloth.getStartWashing()}"></td>
+        <td th:text="${cloth.getStartDrying()}"></td>
+        <td th:text="${cloth.getFinished()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

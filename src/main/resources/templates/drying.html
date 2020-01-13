@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Drying station</title>
+</head>
+<body>
+<a href="/drying">Refresh</a>
+<h2>Click on the link when drying started</h2>
+
+<table>
+    <thead>
+    <tr>
+        <td>Laundry Id</td>
+        <td>Hotel</td>
+        <td>Bed clothes No</td>
+        <td>Towels no</td>
+        <td>When delivered</td>
+        <td>When started washing</td>
+        <td>When started Drying</td>
+        <td>When finished</td>
+        <td></td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="clothes : ${drying}">
+        <td th:text="${clothes.getId()}"></td>
+        <td th:text="${clothes.getCustomer().getName()}"></td>
+        <td th:text="${clothes.getBedclothesAmount()}"></td>
+        <td th:text="${clothes.getTowelsAmount()}"></td>
+        <td th:text="${clothes.getDelivered()}"></td>
+        <td th:text="${clothes.getStartWashing()}"></td>
+        <td><a id="confirmStartDrying"
+        th:href="@{/drying/{id}(id=${clothes.getId()})}"
+               onclick="document.getElementById('confirmStartDrying').style.display='none'">
+            Start drying
+        </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

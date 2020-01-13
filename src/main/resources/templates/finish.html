@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Washing station</title>
+</head>
+<body>
+<a href="/finish">Refresh</a>
+<h2>Click link when everything id finished</h2>
+<table>
+    <thead>
+    <tr>
+        <td>Laundry Id</td>
+        <td>Hotel</td>
+        <td>Bed clothes No</td>
+        <td>Towels no</td>
+        <td>When delivered</td>
+        <td>When started washing</td>
+        <td>When started Drying</td>
+        <!--        <td>When finished</td>-->
+        <td></td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cloth : ${finish}">
+        <td th:text="${cloth.getId()}"></td>
+        <td th:text="${cloth.getCustomer().getName()}"></td>
+        <td th:text="${cloth.getBedclothesAmount()}"></td>
+        <td th:text="${cloth.getTowelsAmount()}"></td>
+        <td th:text="${cloth.getDelivered()}"></td>
+        <td th:text="${cloth.getStartWashing()}"></td>
+        <td th:text="${cloth.getStartDrying()}"></td>
+        <td><a id="finishLink" th:href="@{/finishForm/{id}(id=${cloth.getId()})}"
+               onclick="document.getElementById('finishLink').style.display='none'">Washing is ready</a>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+</body>
+</html>

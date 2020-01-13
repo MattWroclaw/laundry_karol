@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Laundry Client Data Formular</title>
+</head>
+<body>
+<a th:href="@{index}">Main page</a>
+<h2>Fill in client details</h2>
+<form th:action="@{/clientForm}" method="post" th:object="${createCustomer}">
+  ID  <input  th:field="*{id}" readonly>
+  NAME  <input  th:field="*{name}">
+  CITY  <input  th:field="*{city}">
+  STREET  <input t th:field="*{street}">
+  E-MAIL  <input  th:field="*{email}">
+  TELEPHONE  <input  th:field="*{telephone}">
+    <input type="submit" value="Add">
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Hotel name</td>
+        <td>City</td>
+        <td>Street</td>
+        <td>E-mail</td>
+        <td>Telephone</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer : ${allCustomers}">
+        <td th:text="${customer.id}"></td>
+        <td th:text="${customer.name}"></td>
+        <td th:text="${customer.city}"></td>
+        <td th:text="${customer.street}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.telephone}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Laundry Data Formular</title>
+</head>
+<body>
+<a th:href="@{index}">Main page</a>
+<h2>Fill in the new laundry delivery details</h2>
+
+<form th:action="@{/laundryForm}" method="post" th:object="${newLaundry}">
+   <input  th:field="*{id}" hidden>
+   HOTEL <select th:field="*{customer}">
+        <option th:each="customer : ${allCustomers}"
+                th:text="${customer.name}"
+                th:value="${customer.id}">
+        </option>
+    </select>
+   HOW MANY TOWELS <input th:field="*{towelsAmount}">
+   HOW MANY BEDCLOTHES <input th:field="*{bedclothesAmount}">
+    <input  th:field="*{delivered}" readonly>
+    <input  th:field="*{startWashing}" hidden>
+    <input  th:field="*{startDrying}" hidden>
+    <input  th:field="*{finished}" hidden>
+    <input type="submit" value="Confirm">
+</form>
+
+</body>
+</html>
