@@ -10,4 +10,5 @@ public class LaundryKarolApplication {
         SpringApplication.run(LaundryKarolApplication.class, args);
     }
 
+
 }

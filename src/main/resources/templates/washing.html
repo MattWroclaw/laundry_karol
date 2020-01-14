@@ -25,13 +25,13 @@
     </thead>
     <tbody>
     <tr th:each="cloth : ${washing}">
-        <td th:text="${washing.getId()}"></td>
-        <td th:text="${washing.getCustomer().getName()}"></td>
-        <td th:text="${washing.getTowelsAmount()}"></td>
-        <td th:text="${washing.getBedclothesAmount()}"></td>
-        <td th:text="${washing.getDelivered()}"></td>
+        <td th:text="${cloth.getId()}"></td>
+        <td th:text="${cloth.getCustomer().getName()}"></td>
+        <td th:text="${cloth.getTowelsAmount()}"></td>
+        <td th:text="${cloth.getBedclothesAmount()}"></td>
+        <td th:text="${cloth.getDelivered()}"></td>
         <td>
-            <a id="confirmLink" th:href="@{/washingForm/{id}(id=${washing.id})}"
+            <a id="confirmLink" th:href="@{/washingForm/{id}(id=${cloth.id})}"
                onclick="document.getElementById('confirmLink').style.display='none'"
             >Start washing</a>
         </td>

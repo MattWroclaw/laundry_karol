@@ -54,6 +54,14 @@ public class LaundryService {
         return newestLaundry;
     }
 
+    public List <Laundry> readyForWashing(){
+        List<Laundry> laundries = laundries();
+        List<Laundry> beforeWashing = laundries.stream()
+                .filter(m->(m.getDelivered() != null) && (m.getStartWashing() == null))
+                .collect(Collectors.toList());
+        return beforeWashing;
+     }
+
     public List<Laundry> readyForDrying(){
         List<Laundry> laundries = laundries();
         List<Laundry> beforeDrying = laundries.stream().filter(m -> (m.getStartWashing() != null) && (m.getStartDrying() == null))

@@ -11,6 +11,7 @@ import pl.mateusz.forothers.laundry_karol.entities.Customer;
 import pl.mateusz.forothers.laundry_karol.entities.Laundry;
 import pl.mateusz.forothers.laundry_karol.services.CustomerService;
 import pl.mateusz.forothers.laundry_karol.services.LaundryService;
+import pl.mateusz.forothers.laundry_karol.utils.EmailSender;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,6 +22,8 @@ public class AdminController {
 
     private final LaundryService laundryService;
     private final CustomerService customerService;
+
+    private final EmailSender emailSender;
 
     @GetMapping({"index", "/"})
     public String goIndex(Model model){
@@ -61,8 +64,9 @@ public class AdminController {
 
     @GetMapping("washing")
     public String goWashing(Model model){
-        Laundry newestLaundry = laundryService.findNewestLaundry();
-        model.addAttribute("washing", newestLaundry);
+//        Laundry newestLaundry = laundryService.findNewestLaundry();
+        List<Laundry> forWashing = laundryService.readyForWashing();
+        model.addAttribute("washing", forWashing);
         return "washing";
     }
 
@@ -102,5 +106,11 @@ public class AdminController {
         laundry.setFinished(LocalDateTime.now());
         laundryService.updateLaundryProcess(laundry, "finished");
         return "finish";
+    }
+
+    @GetMapping("/mail")
+    public String sendEmail(){
+        emailSender.sendEmail_site();
+        return "index";
     }
 }
